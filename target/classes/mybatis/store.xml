@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="store">
+
+	<select id="selectBossLogin" resultType="bossVO">
+		SELECT 
+			* 
+		FROM 
+			boss 
+		WHERE
+			b_id = #{bId} 
+			AND 
+			b_pw = #{bPw}
+	</select>
+	
+	<select id="selectStoreList" resultType="storeVO" parameterType="bossVO">
+		SELECT 
+			* 
+		FROM 
+			store 
+		WHERE 
+			b_id = #{bId}
+	</select>
+
+	<select id="selectUserStore" resultType="storeVO" parameterType="storeVO">	
+		SELECT 
+			*
+		FROM 
+			(SELECT 
+				a.*
+			FROM 
+				( SELECT  s.* FROM ( SELECT * FROM store WHERE (s_mp in('${sMp}') OR s_mp='MP'))s)a
+			WHERE 
+				s_sido='경기도' 
+				<if test="sSigungu2 != null"> 
+				AND 
+				s_sigungu in
+				<foreach collection="sSigungu2" item="item" index="index" open="(" separator="," close=")" >
+				#{item}
+				</foreach>
+				</if>
+			    <if test="sCate2 != null"> 
+				AND 
+				s_cate in
+				<foreach collection="sCate2" item="item" index="index" open="(" separator="," close=")">
+				#{item}
+				</foreach>
+				</if>  
+   			) 
+   			WHERE 
+   				rownum 
+   				BETWEEN 
+   				#{startRowNo} 
+   				AND 
+   				#{endRowNo}
+   		  
+	</select>
+
+
+	<select id="countUserStore" resultType="int">
+		SELECT 
+			count(*) totalCount 
+		FROM 
+			store
+		WHERE NOT 
+			s_yn='N' 
+			ORDER BY 
+			S_NAME desc
+	</select>
+
+	<select id="selectBossSearch" resultType="bossVO">
+		SELECT 
+			* 
+		FROM 
+			boss
+		WHERE
+			b_id = #{bId}
+	</select>
+
+	<insert id="insertStoreInfo" parameterType="storeVO">
+		INSERT INTO 
+			store
+		VALUES
+			(
+			#{rCid,jdbcType=VARCHAR}
+			,#{bId,jdbcType=VARCHAR}
+			,#{sPw,jdbcType=VARCHAR}
+			,#{sUrl,jdbcType=VARCHAR}
+			,#{sName,jdbcType=VARCHAR}
+			,#{sTel,jdbcType=VARCHAR}
+			,#{sZipcode,jdbcType=VARCHAR}
+			,#{sAddress,jdbcType=VARCHAR}
+			,#{sSido,jdbcType=VARCHAR}
+			,#{sSigungu,jdbcType=VARCHAR}
+			,#{sMp,jdbcType=VARCHAR}
+			,#{sCate,jdbcType=VARCHAR}
+			,#{sOpentime,jdbcType=VARCHAR}
+			,#{sClosetime,jdbcType=VARCHAR}
+			,#{sClose,jdbcType=VARCHAR}
+			,#{sYn,jdbcType=VARCHAR}
+			,#{sLatitude,jdbcType=DOUBLE}
+			,#{sLongitude,jdbcType=DOUBLE}
+			,#{sDetail,jdbcType=VARCHAR}
+			)
+	</insert>
+
+	<insert id="insertTableSet" parameterType="tSetVO">
+		INSERT INTO 
+			tableset
+		VALUES
+			(
+			#{rCid,jdbcType=VARCHAR}
+			,#{tCnt}
+			,#{tMax}
+			)
+	</insert>
+
+	<insert id="insertCongestionset" parameterType="conVO">
+		INSERT INTO
+			congestionset
+		VALUES
+			(
+			#{csId}
+			,#{rCid}
+			,#{csCongestion}
+			,#{csCnt}
+			,#{csTime}
+			,#{csYn}
+			)
+	</insert>
+	
+	<update id="updateStoreInfo" parameterType="storeVO">
+		UPDATE 
+			store 
+		SET 
+			s_name=#{sName,jdbcType=VARCHAR}
+			,s_pw=#{sPw,jdbcType=VARCHAR}
+			,s_tel=#{sTel,jdbcType=VARCHAR}
+			,s_opentime=#{sOpentime,jdbcType=VARCHAR}
+			,s_closetime=#{sClosetime,jdbcType=VARCHAR}
+			,s_detail=#{sDetail,jdbcType=VARCHAR}
+			,s_cate=#{sCate,jdbcType=VARCHAR}
+			,s_zipcode=#{sZipcode,jdbcType=VARCHAR}
+			,s_sido=#{sSido,jdbcType=VARCHAR}
+			,s_sigungu=#{sSigungu,jdbcType=VARCHAR}
+			,s_address=#{sAddress}
+			,s_close=#{sClose,jdbcType=VARCHAR} 
+		WHERE 
+			r_cid=#{rCid}
+	</update>
+	
+	<update id="updateTableSet" parameterType="tSetVO">
+		UPDATE 
+			tableset 
+		SET 
+			t_cnt=#{tCnt}
+			,t_max=#{tMax} 
+		WHERE 
+			r_cid=#{rCid}
+	</update>
+	
+	<update id="updateCongestionset" parameterType="conVO">
+		UPDATE 
+			congestionset 
+		SET 
+			cs_cnt=#{csCnt}
+			,cs_time=#{csTime} 
+		WHERE 
+			cs_id=#{csId}
+	</update>
+
+	<select id="selectMenuList" resultType="menuVO" parameterType="storeVO">
+		SELECT 
+			* 
+		FROM 
+			menu 
+		WHERE 
+			r_cid = #{rCid}
+	</select>
+
+	<select id="selectMenuCate" resultType="menuVO">
+		SELECT 
+			m_cate 
+		FROM 
+			menu
+		WHERE 
+			r_cid = #{rCid} GROUP BY m_cate
+	</select>
+
+	<select id="selectMMenuList" resultType="menuVO" parameterType="menuVO">
+		SELECT 
+			* 
+		FROM 
+			menu 
+		WHERE 
+			r_cid = #{rCid}
+		<if test="mCate != null">
+			AND 
+			m_cate = #{mCate}
+		</if>
+	</select>
+
+	<select id="selectReviewList" resultType="java.util.HashMap">
+		SELECT
+			review.rv_content AS rv_content
+			,review.rv_date AS rv_date
+			,reservelist.m_id AS m_id
+		FROM 
+			review 
+			INNER JOIN 
+			reservelist 
+			ON
+			review.r_id = reservelist.r_id
+		WHERE 
+			review.r_id IN (SELECT r_id FROM reservelist where r_cid=#{rCid})
+		ORDER BY review.rv_date desc
+	</select>
+
+	<select id="selectCongestionset" parameterType="conVO" resultType="String">
+		SELECT 
+			cs_congestion 
+		FROM 	
+			congestionset 
+		WHERE 
+			r_cid =#{rCid} 
+			AND 
+			cs_yn = 'Y'
+	</select>
+
+	<select id="selectTableSetSearch" resultType="tSetVO">
+		SELECT 
+			* 
+		FROM
+			tableset 
+		WHERE 
+			r_cid = #{rCid}
+	</select>
+
+	<select id="selectStore" resultType="storeVO">
+		SELECT 
+			* 
+		FROM 
+			store 
+		WHERE
+			r_cid = #{rCid}
+	</select>
+	
+	<select id="selectFavoriteStore" resultType="favVO">
+		SELECT 
+			* 
+		FROM 
+			favorite 
+		WHERE 
+			r_cid = #{ rCid } 
+			AND
+			m_id = #{ mId }
+	</select>
+	
+	<select id="selectSigungu" resultType='storeVO'>
+		SELECT 
+			s_sigungu 
+		FROM 
+			store 
+		WHERE
+			s_sido = #{sSido} 
+			GROUP BY 
+			s_sigungu
+	</select>	
+	
+	<insert id="insertBossRegister" parameterType="bossVO">
+		INSERT INTO 
+			boss 
+		VALUES
+			(
+			#{bId}
+			,#{bPw}
+			,#{bBorn}
+			,#{bName}
+			,#{bTel}
+			,#{bEmail}
+			,#{bZipcode}
+			,#{bAddress}
+			)
+	</insert>
+	
+	<select id="selectCateList" resultType="menuVO" parameterType="menuVO">
+		SELECT 
+			m_cate 
+		FROM 
+			menu 
+		WHERE 
+			r_cid=#{rCid} 
+		GROUP BY
+			m_cate
+	</select>
+	
+	<select id="selectReserveList" resultType="resVO">
+		SELECT 
+			* 
+		FROM 
+			reservelist 
+		WHERE 
+			r_cid = #{rCid} 
+			AND 	
+			r_yn ='RW'
+	</select>
+	
+	<select id="storeReserveUpdate" parameterType="resVO">
+    	 UPDATE 
+    	 	reservelist 
+    	 SET 	
+    	 	r_yn='RC' 
+    	 WHERE 
+    	 	r_id=#{rId}
+	</select>
+   
+	<select id="storeReserveUpdateOk" parameterType="resVO">
+     	UPDATE 
+     		reservelist 
+     	SET 
+     		r_yn='RO' 
+     	WHERE 
+     	r_id= #{rId}
+	</select>
+	
+	<select id="storeReserveReturn" parameterType="resVO">
+		UPDATE 
+			member 
+		SET 
+			m_point= m_point + (SELECT r_keepmoney FROM reservelist WHERE m_id = #{mId} AND r_id= #{rId}) where m_id = #{mId}
+	</select>
+	
+	<select id="selectstoreRcid" parameterType="String" resultType="storeVO">
+		SELECT 
+			* 
+		FROM 
+			store 
+		WHERE 
+			r_cid = #{rCid}
+	</select>
+	
+	<update id="updateStoreDelete" parameterType="String">
+		UPDATE 
+			store 
+		SET 	
+			s_yn='Y' 
+		WHERE 
+			r_Cid=#{rCid}
+	</update>
+	
+	<select id="selectPageStore" parameterType="storeVO" resultType="storeVO">
+		SELECT 
+			*
+		FROM ( SELECT 
+					*
+		        FROM 
+		        	( SELECT 
+		        		rownum rnum, store.r_cid r_cid, store.b_id b_id, store.s_pw s_pw, store.s_url s_url, store.s_name s_name, store.s_tel s_tel, store.s_zipcode s_zipcode, store.s_address s_address, store.s_sido s_sido, store.s_sigungu s_sigungu, store.s_mp s_mp, store.s_cate s_cate, store.s_opentime s_opentime, store.s_closetime s_closetime, store.s_close s_close, store.s_yn s_yn, store.s_latitude s_latitude, store.s_longitude s_longitude, store.s_detail s_detail 
+		              FROM 
+		              	store
+		               WHERE (s_mp, s_cate, s_sido) 
+		               		IN (
+		                    	SELECT s_mp,s_cate,s_sido  
+		                    	FROM store 
+		                   		WHERE s_mp IN (#{sMp}, 'MP')
+								AND s_sido IN 
+									<foreach collection="sSido2" index="index" item="type" open="(" close=")" separator=",">
+										#{type}
+									</foreach>
+									
+								<if test='sCate2 !="" and sCate2 != null'>
+									AND s_cate IN 
+										<foreach collection="sCate2" index="index" item="type" open="(" close=")" separator=",">
+											#{type}
+										</foreach>
+								</if>
+		               			 )
+		            ) store
+		        WHERE rnum <![CDATA[ <= ]]> #{endStore}
+		    )
+		WHERE rnum <![CDATA[ >= ]]> #{startStore}
+	</select>
+</mapper>

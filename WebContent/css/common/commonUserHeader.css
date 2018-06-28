@@ -1,0 +1,178 @@
+@charset "UTF-8";
+
+/* 이거 없음 식당 검색 깨짐 */
+#logo1 {} 
+.header-part {float: none;}
+.search-part {padding: 10px;margin-left: 10px;}
+.menuname:before {
+	content: "ㆍ";
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #f16462;
+	left: -5px;
+}
+.map-address {
+	margin-top: 50px;
+}
+
+/* 전체적인 화면 패딩줘서 크기 줄이기 */
+.wrapper-spacer {
+	padding: 70px 140px;
+}
+/* 헤더가 스크롤 안내릴 땐 relative?이고 스크롤 내리면 fixed */
+header {
+	position: sticky;
+	z-index: 9999;
+	width: 100%;
+	top : 0;
+	background-color: white;
+}
+/* 헤더 position sticky 주기위해 unset으로 변경 */
+.header-part.header-on {
+	left: unset;
+	top: unset;
+	position: unset;
+}
+.header-bottom {
+	float: unset;
+	position : unset;
+}
+.header-part .container {
+	position: unset;
+}
+/* 헤더 배경색 지정, 테두리 둥글게 */
+.header-on {
+	background-color: #f16462;
+	border-radius: 15px;
+}
+/* 헤더 크기 조절 */
+header .container {
+	width: 1500px;
+}
+/* 헤더 로고, 메뉴들 일자로 */
+.con-div {
+	display: inline-block;
+}
+/* 이미지들 높이 100% *//* 헤더 img 커서 */
+.con-div>img {
+	height: 100%;
+	cursor: pointer;
+}
+/* 로고 div */
+#headerLogo {
+	text-align: center;
+	width: 15%;
+	height: 106px;
+}
+/* 먹포구분 div */
+#headerMP {
+	width: 21%;
+	margin-right: 8%;
+}
+/* 검색 div */
+#headerSearch {
+	width: 25%;
+}
+/* 로그인 div */
+#headerLoginJoin {
+	width: 25%;
+}
+/* 검색 img */
+#headerSearch>img {
+	margin-left: 30%;
+}
+/* 로그인 img */
+#headerLoginJoin>img {
+	margin-left: 50%;
+}
+
+/* drop-nav 공통 */
+.drop-nav {
+	position: absolute;
+	background-color: white;
+	border-radius: 0 0 15px 15px;
+	border: 5px solid #f16461;
+	border-top: 0px;
+	display : none; 
+}
+
+/* 먹포 drop-nav */
+#mpdrop {
+	width: 15%;
+	padding: 2%;
+ 	left: 21%;
+}
+#mpdrop a {
+	font-size: 22px;
+	color: #20202f;
+}
+#mpdrop a:hover {
+	color : #f16462;
+}
+#mpdrop>li:last-child {
+	padding: 24px 0 0 0;
+}
+
+#drop-visi {
+	display: block;
+}
+
+/* 검색 drop-nav */
+#searchdrop {
+	width: 45%;
+	top:100%;
+	left: 37%;
+	padding: 15px 0;
+}
+#txtSearch {
+	margin: 10px;
+	width: 80%;
+	margin-left: 2%;
+}
+#btnSearch {
+	background: url(/images/icon-zoom-blue.png);
+	width: 28px;
+	border: none;
+	margin-left: 1%;
+}
+.mega-menu {
+	width : 39%;
+	display: inline-block;
+	padding: 10px;
+	vertical-align: top;
+}
+#searchdrop>li:first-child {
+	padding-left: 35px;
+}
+#searchdrop>li:last-child {
+	width: 60%;
+}
+.menuname {
+	padding: 15px;
+	font-size: 20px;
+	margin-left: 20px;
+	display: block;
+	position: relative;
+	color: #20202f;
+ 	cursor: default; 
+}
+#locationdrop {
+	margin-left: 25px;
+}
+#locationdrop>li {
+	padding: 5px 0;
+}
+#categorydrop {
+	margin-left: 25px;
+}
+#categorydrop>li {
+	padding: 5px 0;
+}
+#categorydrop>li:last-child, #locationdrop>li:last-child {
+	font-weight : bold;
+	color : #f16462;
+}
+.jq-checkbox {
+	border-color: #D3D3D3;
+}

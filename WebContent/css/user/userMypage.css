@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+.row>div {
+	cursor: pointer;
+	
+}
+
+.row>div h5 {
+	color: #A9A9A9;
+	margin-top: 20px;
+}
+
+.row>div h5:hover {
+	color: #e4b95b;
+ } 
+ 
+ .container .breadcrumb-inner h2 {
+ 	margin-bottom: 40px ;
+ }
+ 
+ .shop-cart-table {
+	text-align: center;
+}
+
+.shop-cart-table th {
+	text-align: center;
+}
+
+.product-cart-detail {
+	margin-top: 10px;
+	text-align: center;
+}
+
+input[name="txt"] {
+	width: 20%;
+}
+
+#calendarstart, #calendarend {
+	margin-bottom: 0px;
+}
+
+#calendarsearch {
+	margin-bottom: 29px;
+}
+
+strong[name="datetext"] {
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+#calendarsearch {
+	text-align: right;
+}
+
+
+.searchbtn {
+    min-width: auto;
+    margin-left: 5%;
+    width: 100%;
+    float: none;
+    margin-bottom: 0px;
+}
+
+input[name="startDate"], input[name="endDate"] {
+    width: 15%;
+    text-align: center;
+}
+
+div.container .pointmaincenter {
+    /* float: initial; */
+    margin-left: 25%;
+    width: 50%;
+    margin-right: 25%;
+    background: #ffffff;
+    padding: 35px 30px 40px;
+    -webkit-border-radius: 17px;
+    -moz-border-radius: 17px;
+    -ms-border-radius: 17px;
+    -o-border-radius: 17px;
+    border-radius: 17px;
+}
+
+.row>div h5[name="mypoint"] {
+	color: #20202f;
+	
+	
+}
+
+input[name="pPrice"] {
+	width: 50%;
+	float: right;
+	margin-bottom: 0px;
+	
+}
+
+.row>div h6[name="mypointprice"] {
+	float: left;
+    padding-top: 10px;
+}
+
+.row>div h6[name="mypointnotice"] {
+	float: left;
+	margin-right: 
+}
+
+small ol li {
+	margin-left: 20%;
+}
+.checkout-total {
+	border-bottom: 0px;
+}
+
+h3[name="infoItem"] {
+	text-align: left;
+}
+
+a[name="infoModify"] {
+	margin: 2%
+}
+
+.pwConfirm {
+	display: flex;
+	width: 50%;
+    margin: 3% 25% 0% 25%;
+    margin-bottom: 0%;
+}
+
+.pwConfirm>h6, .pwConfirm>input {
+	margin-bottom: 0%;
+}
+
+h6[name="infoModicyCheck"] {
+	width: -webkit-fill-available;
+	margin-top: auto;
+    margin-bottom: auto;
+	
+}
+
+form.infoModifySubmit {
+	width: 60%;
+    margin: 0% 20% 0% 20%;
+}
+
+p[name="memberout"] {
+	text-align: center;
+}
+
+.favoriteImg {
+	float: right;
+    margin-top: -6%;
+    cursor: pointer;
+}

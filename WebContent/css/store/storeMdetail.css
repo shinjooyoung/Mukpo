@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+div.menu-list h5 {
+	padding-right: 66px !important;
+}
+
+.ul-list li:before {
+	content: "";
+}
+
+.comment-info {
+	margin-left: 0px !important;
+}
+
+.StoreMdetail_congestion img {
+	width: auto;
+	height: 120px;
+}
+
+.reserveset {
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+h5 {
+	text-align: center;
+}
+
+form div.reserveM {
+	width: 20%;
+	margin: 5% 40% 5% 40%;
+	text-align: center;
+}
+
+.shop-main-list {
+	float: left;
+	width: 100%;
+	text-align: center;
+	margin: 5% 0 5% 0;
+}
+
+.shop-product {
+	    display: inline-block;
+    width: 100%;
+    position: relative;
+    margin-bottom: 0%;
+}
+
+.date-feature {
+	background-color: rgba(0,0,0,0) ;
+}
+
+.favoriteImg {
+	cursor: pointer;
+}
+
+#reserveM{
+	cursor: pointer;
+}

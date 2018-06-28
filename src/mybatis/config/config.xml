@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	<typeAliases>
+		<!-- common -->
+		<typeAlias type="common.domain.NoticeVO" alias="notiVO" />
+		<!-- pos -->
+		<typeAlias type="pos.domain.CongestionSetVO" alias="conVO" />
+		<typeAlias type="pos.domain.PaymentVO" alias="payVO" />
+		<typeAlias type="pos.domain.OrderListVO" alias="olVO" />
+		<!-- reserve -->
+		<typeAlias type="reserve.domain.FavoriteWeekVO" alias="favWeekVO" />
+		<typeAlias type="reserve.domain.ReserveMenuVO" alias="resMenuVO" />
+		<typeAlias type="reserve.domain.ReserveVO" alias="resVO" />
+		<typeAlias type="reserve.domain.ReserveWeekVO" alias="resWeekVO" />
+		<!-- store -->
+		<typeAlias type="store.domain.BlackListVO" alias="bLVO" />
+		<typeAlias type="store.domain.BossVO" alias="bossVO" />
+		<typeAlias type="store.domain.MenuVO" alias="menuVO" />
+		<typeAlias type="store.domain.StoreVO" alias="storeVO" />
+		<typeAlias type="store.domain.TableSetVO" alias="tSetVO" />
+		<!-- user -->
+		<typeAlias type="user.domain.FavoriteVO" alias="favVO" />
+		<typeAlias type="user.domain.PointVO" alias="poVO" />
+		<typeAlias type="user.domain.ReviewVO" alias="reVO" />
+		<typeAlias type="user.domain.UserVO" alias="userVO" />
+	</typeAliases>
+</configuration>

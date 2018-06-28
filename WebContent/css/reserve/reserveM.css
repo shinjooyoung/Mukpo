@@ -1,0 +1,28 @@
+.rowTopMargin {
+	margin-top: 3%;
+}
+
+.ui-timepicker-wrapper {
+    left: 53% !important;
+    width: 15% !important;
+    text-align: center !important;
+}
+
+.ui-timepicker-list li {
+    font-size: 18px !important;
+}
+
+li.ui-timepicker-disabled {
+	color: #99999961 !important;
+}
+
+
+.dropdown-menu{
+	left: 325.8px !important;
+    width: 20% !important;
+    
+}
+
+.fc-future {
+	cursor: pointer;
+}

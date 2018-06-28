@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+	<insert id="userInsert" parameterType="userVO"> 
+		INSERT INTO 
+			member 
+		VALUES
+			(
+			#{mId}
+			,#{mPw}
+			,#{mName}
+			,#{mTel}
+			,#{mBorn}
+			,#{mEmail}
+			,0
+			,'N'
+			)
+	</insert>
+
+	<select id="userLogin" parameterType="userVO" resultType="userVO"> 
+		SELECT 
+			* 
+		FROM 
+			member 
+		WHERE 
+			m_id=#{mId} 
+			AND 
+			m_yn = 'N'
+			<if test="mPw !=null">
+			AND 
+			m_pw = #{mPw}
+			</if>  
+		
+	</select>
+
+	<insert id="reviewInsert" parameterType="reVO">
+		INSERT INTO 
+			review 
+		VALUES
+			(
+			#{rId}
+			,#{rvContent}
+			,sysdate
+			)
+	</insert>
+
+	<select id="selectPoint" parameterType="poVO" resultType="poVO">
+		 SELECT 
+		 	* 
+		 FROM 
+		 	point 
+		 WHERE 	
+		 	m_id= '${mId}'
+
+	</select>
+
+	<select id="selectPointDate" parameterType="poVO" resultType="poVO">
+		SELECT 
+			* 
+		FROM 
+			point 
+		WHERE 
+			m_id = '${mId}' 
+			AND 
+			p_date BETWEEN TO_DATE('${startDate}' || '23:59:59', 'YYYY/MM/DD HH24:MI:SS') AND TO_DATE('${endDate}' || '23:59:59', 'YYYY/MM/DD HH24:MI:SS')
+	</select>
+	
+	<select id="selectPointCharge" parameterType="poVO" resultType="poVO">
+		SELECT 
+			* 
+		FROM 
+			(SELECT * FROM point WHERE m_id='${mId}' ORDER BY p_date DESC) WHERE rownum=1 
+	</select>
+	
+	<select id="selectMemberName" parameterType="userVO" resultType="userVO">
+		SELECT 
+			* 
+		FROM 
+			member 
+		WHERE 
+			m_id = #{mId}
+	</select>
+	
+	<insert id="insertPoint" parameterType="poVO">
+		INSERT INTO 
+			point 
+				(
+				p_id
+				,m_id
+				,p_date
+				,p_as
+				,p_store
+				,p_price
+				,p_cruntmoney
+				) 
+		VALUES 
+			(
+			seq_point_p_id.nextval
+			,#{mId}
+			,sysdate
+			,'충전'
+			,'포인트충전'
+			,#{pPrice}
+			,#{pCruntmoney}
+			)
+	</insert>
+	
+	<select id="getaddr" parameterType="java.util.HashMap" resultType="storeVO">
+		SELECT 
+			*
+	   	FROM 
+	   		store
+	   	WHERE 
+	   		s_name like '%'||'${search}'||'%' 
+	   		OR 
+	   		s_sido like '%'||'${search}'||'%'
+	   		OR 
+	   		s_sigungu like '%'||'${search}'||'%'
+	   		OR 
+	   		s_cate like '%'||'${search}'||'%'
+	</select>
+
+	<select id="selectLatelyReview" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT 
+			c.rv_content AS rv_content
+			,c.rv_date AS rv_date
+			,c.r_cid AS r_cid
+			,c.s_name AS s_name
+			,c.m_name AS m_name
+		FROM 
+			(SELECT 
+				a.rv_content AS rv_content, a.rv_date AS rv_date, b.r_cid AS r_cid, b.s_name AS s_name, d.m_name AS m_name
+			FROM review a
+		        ,(SELECT r_id, r_cid, s_name FROM reservelist WHERE r_mpwp = '${rMpwp}') b
+		        ,(SELECT m_name FROM member WHERE m_id IN (SELECT m_id FROM reservelist) ) d
+			WHERE 
+				a.r_id 
+				IN 
+				b.r_id
+			ORDER BY 
+				rv_date DESC
+			) c
+		<where>
+			ROWNUM <![CDATA[ <= ]]> 6
+		</where>
+	</select>
+	
+	<select id="selectMemberModifyCheck" resultType="userVO">
+		SELECT 
+			* 
+		FROM 
+			member 
+		WHERE 
+			m_id = #{mId} 
+			AND 	
+			m_pw = #{mPw}
+	</select>
+	
+	<update id="updateMemberModify" parameterType="userVO">
+		UPDATE 
+			member 
+		SET 
+			m_pw = #{ mPw }
+		<if test="mName != null and mTel != null and mEmail != null and mBorn != null">
+			,m_name = #{ mName }
+			,m_tel = #{ mTel }
+			,m_email = #{ mEmail }
+			,m_born = #{ mBorn } 
+		</if>
+		 WHERE 
+		 	m_id = #{mId}
+	</update>
+	
+	<update id="updateMemberDelete" parameterType="userVO">
+		UPDATE 
+			member 
+		SET 
+			m_yn = 'Y' 
+		WHERE 
+			m_id = #{ mId }
+	</update>
+	
+	<insert id="insertFavorite" parameterType="favVO">
+		INSERT INTO 
+			favorite 
+		VALUES 
+			(
+			#{fId}
+			,#{mId}
+			,#{rCid}
+			)
+	</insert>
+	
+	<delete id="deleteFavorite" parameterType="favVO">
+		DELETE FROM 
+			favorite 
+		WHERE 
+			f_id = #{fId}
+	</delete>
+
+	<select id="selectFS" parameterType="favVO" resultType="java.util.HashMap">
+		SELECT 
+			count(reservelist.r_cid) AS REVIEW_COUNT
+			,store.r_cid AS r_cid
+			,store.s_name AS s_name
+			,store.s_url AS s_url
+			,store.s_mp AS s_mp
+		FROM 
+			review 
+			FULL OUTER JOIN 
+			RESERVELIST 
+			ON 
+			review.R_ID = RESERVELIST.R_ID
+        		RIGHT JOIN 
+        			store 
+        			ON 
+        			store.r_cid = reservelist.r_cid
+            		INNER JOIN 
+            		favorite 
+            		ON 
+            		favorite.r_cid = store.r_cid
+		WHERE 
+			favorite.m_id = #{ mId }
+		GROUP BY 
+			store.r_cid
+			,store.s_name
+			,store.s_url
+			,store.s_mp
+	</select>
+		
+	<select id="selectMMenuList" resultType="menuVO" parameterType="menuVO">
+		SELECT 
+			* 
+		FROM 
+			menu 
+		WHERE 
+			r_cid = #{rCid}
+		<if test="mCate != null">
+			AND m_cate = #{mCate}
+		</if>
+	</select>
+	
+	<select id="selectMStoreLocation" parameterType="storeVO" resultType="storeVO">
+		SELECT 
+			* 
+		FROM 
+			store 
+		WHERE 
+			s_mp = 'M' 
+			OR 
+			s_mp = 'MP'
+	</select>
+	
+	<select id="selectPStoreLocation" parameterType="storeVO" resultType="storeVO">
+		SELECT 
+			* 
+		FROM 
+			store 
+		WHERE 
+			s_mp = 'P' 
+			OR 
+			s_mp = 'MP'
+	</select>
+	
+</mapper>

@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+.userName{
+	font-size: 15px;
+}
+
+.panel-body {
+	text-align: left;
+	font-weight: bold;
+	padding: 15px 34px !important;
+}
+
+.posReserveList{
+	max-height: 338.5px;
+	overflow-x: auto;
+}
+
+.marginBottom{
+    margin-bottom: 5% !important;
+}
+
+.Menumargin{
+	position: absolute;
+    left: 0px;
+}
+
+.menuScroll{
+	overflow-x: auto;
+	height: 320px !important;
+}
+
+#modalMargin{
+	margin-top: -20%;
+}
+
+.userMypageMenucateWidth {
+	width: 100% !important;
+
+ }
+ 
+ #containerWidthEdit{
+ width: 100%;
+ }
+ 
+ #reserveOrder{
+ 	margin-top: 5%;
+ }
+ 
+ .shop-main-list-hover  {
+    opacity: 1;
+    -webkit-transform: scale(1) rotate(0deg);
+    -moz-transform: scale(1) rotate(0deg);
+    -ms-transform: scale(1) rotate(0deg);
+    -o-transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
+    -webkit-transition-delay: 0.1s;
+    -moz-transition-delay: 0.1s;
+    -ms-transition-delay: 0.1s;
+    -o-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+    z-index: 1;
+}
+
+.poBtn{
+	margin-top: 0% !important;
+    float: right;
+    line-height: 32px !important;
+}
+
+.posTopFont{
+    font-size: 18px;
+    color: #383848;
+    line-height: normal;
+    margin: 0 0 16px 0;
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+.shop-cart-table-margin{
+	margin-bottom: 5%;
+}    

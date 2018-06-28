@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pos">
+
+	<select id="selectMenuList" resultType="menuVO" parameterType="String">
+		SELECT 
+			* 
+		FROM 
+			menu
+		WHERE
+			r_cid=#{rCid}
+	</select>
+
+	<select id="selectOrderList" resultType="olVO" parameterType="String">
+		SELECT 
+			* 
+		FROM 
+			orderlist
+		WHERE
+			r_cid=#{rCid}
+	</select>
+	
+	<select id="selectTableSet" resultType="tSetVO" parameterType="String">
+		SELECT 
+			* 
+		FROM 
+			tableset
+		WHERE
+			r_cid=#{rCid}
+	</select>
+	
+	<select id="selectCongestionset" resultType="conVO" parameterType="conVO">
+		SELECT 
+			* 
+		FROM 
+			congestionset
+		WHERE
+			r_cid=#{rCid} AND cs_congestion=#{csCongestion}
+	</select>
+	
+	<select id="selectReserveList" resultType="resVO" parameterType="String">
+		SELECT 
+			* 
+		FROM 
+			reservelist
+		WHERE
+			r_cid=#{rCid} AND r_yn = 'RO'
+	</select>
+	
+	<insert id="insertOrderList" parameterType="olVO">
+		INSERT INTO 
+			orderlist
+		VALUES
+			(
+			SEQ_ORDERLIST_O_ID.nextval
+			,123,#{rCid}
+			,#{oMenu}
+			,#{oTablenum}
+			,sysdate
+			,#{oCnt}
+			,0
+			,#{o_price}
+			,'Y'
+			,'N'
+			)
+		</insert>
+</mapper>
