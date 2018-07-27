@@ -22,3 +22,17 @@
 ### * 주간 예약 장바구니
 ### * 모달창 내에서 메뉴 를 클릭하면 장바구니에 추가되며 장바구니에 추가할 수 있다.
 ![8](https://user-images.githubusercontent.com/32383284/42024171-8d1b816a-7afc-11e8-810a-92e05dfb8f4c.png)
+
+### * 주간예약 최종 확인 및 결제
+### * 이전화면들에서 선택한 데이터를 최종적으로 확인하고 결제한다.
+![1](https://user-images.githubusercontent.com/32383284/43311176-976e3fac-91c4-11e8-97c6-d21cac8ae378.PNG)
+
+### * 매장 포스기 혼잡도 설정
+### * 매장 포스기 예약요청 확인
+![2](https://user-images.githubusercontent.com/32383284/43311244-d9c98668-91c4-11e8-9140-b5cd8ae9a6f9.PNG)
+
+### * 매장 포스기 예약 상세내역 표시
+![2-2](https://user-images.githubusercontent.com/32383284/43311325-14942b04-91c5-11e8-87d0-493898b34c0c.PNG)
+
+### * 매장 포스기 주문하기
+![3](https://user-images.githubusercontent.com/32383284/43311359-328344c4-91c5-11e8-9a1e-2992c7134fe7.PNG)
