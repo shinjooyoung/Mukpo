@@ -7,7 +7,7 @@
 ![1](https://user-images.githubusercontent.com/32383284/42022245-c591b2d0-7af7-11e8-85dc-660b105aa573.png)
 
 ### * 지역과 카테고리 식닥이름으로 검색 가능
-![5](https://user-images.githubusercontent.com/32383284/42022361-1f4a48b4-7af8-11e8-811a-07c2ac18ee30.png)
+![default](https://user-images.githubusercontent.com/32383284/43310882-cd2688ee-91c3-11e8-9b13-bb920af7a5a3.PNG)
 
 ### * GPS기반 현재 위치 표시 
 ### * DB에 등록된 더미데이터 상점내용 표시
