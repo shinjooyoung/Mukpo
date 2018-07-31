@@ -8,6 +8,8 @@
 
 
 
+
+
 ### * 매장리스트 페이징 구현
 ![1](https://user-images.githubusercontent.com/32383284/42022245-c591b2d0-7af7-11e8-85dc-660b105aa573.png)
 
@@ -17,8 +19,11 @@
 
 
 
+
 ### * 지역과 카테고리 식닥이름으로 검색 가능
 ![default](https://user-images.githubusercontent.com/32383284/43310882-cd2688ee-91c3-11e8-9b13-bb920af7a5a3.PNG)
+
+
 
 
 
@@ -37,10 +42,14 @@
 
 
 
+
+
 ### * 달력을 통해 예약가능 현재 날짜 표시
 ### * 예약 불가능한 날짜 선택시 알림
 ### * 직접 입력 불가 알림
 ![3](https://user-images.githubusercontent.com/32383284/42023861-da42b8ce-7afb-11e8-95b6-085a29f6c9a1.png)
+
+
 
 
 
@@ -69,9 +78,13 @@
 
 
 
+
+
 ### * 매장 포스기 혼잡도 설정
 ### * 매장 포스기 예약요청 확인
 ![2](https://user-images.githubusercontent.com/32383284/43311244-d9c98668-91c4-11e8-9140-b5cd8ae9a6f9.PNG)
+
+
 
 
 
