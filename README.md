@@ -1,4 +1,39 @@
-# Mukpo 주요 기능
+# Mukpo 
+
+### * 주제선정
+![1](https://user-images.githubusercontent.com/32383284/43986903-ef5d3aa2-9d53-11e8-9678-e6b3619be212.jpg)
+
+![2 2](https://user-images.githubusercontent.com/32383284/43986916-0faae228-9d54-11e8-815b-6a95d066e9da.jpg)
+
+
+
+
+
+
+### * 상황분석
+![3](https://user-images.githubusercontent.com/32383284/43986925-496fe170-9d54-11e8-9a66-b123cb09465d.jpg)
+
+![4 2](https://user-images.githubusercontent.com/32383284/43986929-59f475e2-9d54-11e8-883f-31681163bba2.jpg)
+
+
+
+
+### * LEAN CANVAS
+![6 lean](https://user-images.githubusercontent.com/32383284/43986944-85e06e90-9d54-11e8-9767-a08f25bc5852.jpg)
+
+
+
+
+
+
+
+
+### * 주요기능
+![5](https://user-images.githubusercontent.com/32383284/43986954-96c0437a-9d54-11e8-83ac-0c456288cc0f.jpg)
+
+
+
+
 
 ### * 공공데이터를 활용
 ![10](https://user-images.githubusercontent.com/32383284/42022451-55d8b8f2-7af8-11e8-8416-70e7fe9ec9e5.png)
